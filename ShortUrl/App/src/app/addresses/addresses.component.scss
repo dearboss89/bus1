@@ -1,0 +1,14 @@
+table {
+    margin-top: 25px;
+    text-align: center;
+    width: 100%;
+  }
+table th{
+  text-align: center;
+}
+
+.dialog-edit, .dialog-create{
+  .mat-form-field{
+    width: 100%;
+  }
+}

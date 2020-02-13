@@ -1,0 +1,49 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>
+      <button color="primary" mat-raised-button (click)="openDialogCreateUrl()">Добавить новый Url</button>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" ng-repeat="row in dataSourse">
+
+      <ng-container matColumnDef="longUrl">
+        <th mat-header-cell *matHeaderCellDef> Длинный URL </th>
+        <td mat-cell *matCellDef="let element"> {{element.longUrl}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="shortUrl">
+        <th mat-header-cell *matHeaderCellDef> Сокращенный URL </th>
+        <td mat-cell *matCellDef="let element">
+          <a href="{{element.longUrl}}" target="_blank"
+            (click)="clickShortUrlCount(element.id)">{{element.shortUrl}}</a></td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef> Дата создания </th>
+        <td mat-cell *matCellDef="let element"> {{element.created | date: 'dd.MM.yyyy hh:mm:ss'}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="followCount">
+        <th mat-header-cell *matHeaderCellDef> Кол-во переходов </th>
+        <td mat-cell *matCellDef="let element"> {{element.followCount}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Действия </th>
+        <td mat-cell *matCellDef="let element">
+          <button color="primary" mat-stroked-button (click)="openDialogEditUrl(element.id, element.longUrl)"> Редактировать </button>
+          <button color="warn" mat-stroked-button (click)="openDialogDeleteUrl(element.id, element.longUrl)"> Удалить </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+
+</mat-card>
